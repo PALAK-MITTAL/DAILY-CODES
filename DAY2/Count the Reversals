@@ -1,0 +1,27 @@
+
+// QUESTION:                          https://www.geeksforgeeks.org/problems/count-the-reversals0401/1
+
+int countRev (string s)
+{
+    // your code here
+    int n=s.size();
+    if(n<2 || n%2!=0) return -1;
+    
+     int openCount = 0, closeCount = 0;
+    stack<char>st;
+    st.push(s[0]);
+    
+    for(int i=1;i<n;i++){
+        char ch=s[i];
+        if(!st.empty() && st.top()=='{' &&s[i]=='}') st.pop();
+        else st.push(ch);
+    }
+    
+    while (!st.empty()) {
+        if (st.top() == '{') openCount++;
+        else closeCount++;
+        st.pop();
+    }
+    
+    return (openCount + 1) / 2 + (closeCount + 1) / 2;
+}
