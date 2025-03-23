@@ -1,0 +1,33 @@
+class Solution {
+public:
+    vector<vector<int>> binTreeSortedLevels(int arr[], int n) {
+        vector<vector<int>> result;
+        queue<int> q;
+        q.push(0);
+
+        while (!q.empty()) {
+            int size = q.size();
+            vector<int> level;
+
+            for (int i = 0; i < size; i++) {
+                int index = q.front();
+                q.pop();
+
+                if (index < n) {
+                    level.push_back(arr[index]);
+
+                    if (2 * index + 1 < n) 
+                        q.push(2 * index + 1);
+                    
+                    if (2 * index + 2 < n) 
+                        q.push(2 * index + 2);
+                }
+            }
+
+            sort(level.begin(), level.end());
+            result.push_back(level);
+        }
+
+        return result;
+    }
+};
