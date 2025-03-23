@@ -1,0 +1,24 @@
+class Solution{
+  public:
+    /*You are required to complete below method */
+    int maxLevelSum(Node* root) {
+        // Your code here
+         int ans = INT_MIN;
+        queue<Node*> q;
+        q.push(root);
+        while(!q.empty()) {
+            int s = q.size();
+            int maxSum = 0;
+            for(int i=0;i<s;i++) {
+                Node *current = q.front();
+                q.pop();
+                maxSum = maxSum + current->data;
+                if(current->left!=NULL)  q.push(current->left);
+                if(current->right!=NULL)  q.push(current->right);
+            }
+            if(maxSum>ans)
+                ans = maxSum;
+        }
+        return ans;
+    }
+};
