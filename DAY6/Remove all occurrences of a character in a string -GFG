@@ -1,0 +1,11 @@
+    // Function to remove all occurrences of the character from the string
+    void removeCharacter(string &s, char c) {
+        // code here
+        string part="";
+        int i=0;
+        while(i!=s.size()){
+            if(s[i]!=c) part+=s[i];
+            i++;
+        }
+        s=part;
+    }
