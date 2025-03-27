@@ -1,0 +1,24 @@
+class Solution {
+  public:
+    // Function to find the minimum number of platforms required at the
+    int findPlatform(vector<int>& arr, vector<int>& dep) {
+        sort(arr.begin(), arr.end());
+        sort(dep.begin(), dep.end());
+    
+        int maxPlatforms = 0, currPlatforms = 0;
+        int i = 0, j = 0;
+    
+        while (i < arr.size() && j < dep.size()) {
+            if (arr[i] <= dep[j]) {
+                currPlatforms++;
+                maxPlatforms = max(maxPlatforms, currPlatforms);
+                i++;
+            } else {
+                currPlatforms--;
+                j++;
+            }
+        }
+        return maxPlatforms;
+    }
+
+};
