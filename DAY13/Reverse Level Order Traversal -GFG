@@ -1,0 +1,28 @@
+class Solution {
+  public:
+    vector<int> reverseLevelOrder(Node *root) {
+        // code here
+        vector<vector<int>> v ;
+        queue<Node*>q ;
+        q.push(root) ;
+        int curr_level = 0; 
+        while(!q.empty()) {
+            int size = q.size() ;
+            v.push_back({}) ;
+            for(int i = 0; i < size; i++) {
+                Node* node = q.front() ;
+                q.pop() ;
+                v[curr_level].push_back(node->data) ;
+                if(node -> left) q.push(node -> left) ;
+                if(node -> right) q.push(node -> right) ;
+            }
+            curr_level++ ;
+        }
+        reverse(v.begin(), v.end()) ;
+        vector<int> res ;
+        for(int i = 0; i < v.size(); i++) {
+            for(int j = 0; j < v[i].size(); j++) res.push_back(v[i][j]) ;
+        }
+        return res; 
+    }
+};
